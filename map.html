@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        Checker
+    </title>
+    <style>
+        body {
+            text-align:center;
+            background-color:pink;
+        }
+        #table{
+            display: inline-block;
+            margin-top:300px;
+        }
+        #table div{
+            line-height: 1px;
+        }
+        /* #table div:nth-child(odd) span:nth-child(even),
+        #table div:nth-child(even) span:nth-child(odd) {
+            background-color:black;
+        }
+        #table div:nth-child(even) span:nth-child(even),
+        #table div:nth-child(odd) span:nth-child(odd) {
+            background-color:white;
+        } */
+
+        /* #table div:nth-child(even) span:nth-child(even) .pawn::before,
+        #table div:nth-child(odd) span:nth-child(odd) .pawn::before {
+            background-color:black;
+            display:none;
+        }
+        #table div:nth-child(odd) span:nth-child(even) .pawn::before,
+        #table div:nth-child(even) span:nth-child(odd) .pawn::before {
+            background-color:white;
+            display:none;
+        } */
+        /* #table div:nth-child(even) span:nth-child(even) .pawn,
+        #table div:nth-child(odd) span:nth-child(odd) .pawn {
+            display:none;
+        }
+        #table div:nth-child(odd) span:nth-child(even) .pawn,
+        #table div:nth-child(even) span:nth-child(odd) .pawn {
+            display:none;
+        }
+        #table div:nth-child(1) span:nth-child(1) .pawn {
+            display:block;
+        }
+        #table div:nth-child(1) span:nth-child(1) .pawn::before {
+            background-color:black;
+        } */
+        #table div span{
+            position:relative;      
+            display: inline-block;
+            width: 42px;
+            height: 42px;
+            cursor:pointer;
+        }
+        .pawn {
+            position:absolute;
+            top:0px;
+            left:0px;
+            width:100%;
+            height:100%;
+            cursor:pointer;
+            transition:all 0.3s ease-in 0s;
+            z-index:444;
+        }
+        .pawn::before {
+            content:'';
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            height:60%;
+            width:60%;
+            border-radius:50%;
+        }
+        .white {
+            background-color:#fff;
+        }
+        .black {
+            background-color:#000;
+        }
+    </style>
+  </head>
+  <body>
+
+  <div id="table">
+
+  </div>
+
+  <script src="map.js"></script>
+  </body>
+</html>
