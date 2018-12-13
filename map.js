@@ -37,21 +37,23 @@ for ( var y = 0; y < board.length; y++ ) {
     //Row
     for ( var x = 0; x < board.length; x++ ) {
         var cell = column.appendChild(document.createElement("span"));
-        cell.addEventListener("click", function(e) {
-            console.log("try again");
-        })
+            cell.addEventListener("click", function(e) {
+                if ( e.target == piece ) {
+                    piece.style.backgroundColor = "red";
+                }
+                else {
+                }
+            })
         determinateColor();
         //Condition for Coordonates(piece)
-        if ( positionX == x && positionY == y) {
+        if ( positionX == x && positionY == y ) {
             var piece = cell.appendChild(document.createElement("b"));
                 piece.classList.add("pawn");
         }
     }
 }
 
-piece.addEventListener("click", function(e) {
-    e.stopPropagation();
+// piece.addEventListener("click", function(e) {
+    // e.stopPropagation();
     // e.cancelBubble = true;
-    console.log("It's my piece");
-    // this.style.display = "none";
-})
+// })
