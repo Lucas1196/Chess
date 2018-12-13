@@ -28,7 +28,7 @@ function determinateColor() {
 
 //Coordonates for Piece(DYNAMIC)
 var positionX = 4;
-var positionY = 2;
+var positionY = 3;
 
 //Columns
 for ( var y = 0; y < board.length; y++ ) { 
@@ -37,7 +37,10 @@ for ( var y = 0; y < board.length; y++ ) {
     //Row
     for ( var x = 0; x < board.length; x++ ) {
         var cell = column.appendChild(document.createElement("span"));
-            determinateColor();
+        cell.addEventListener("click", function(e) {
+            console.log("try again");
+        })
+        determinateColor();
         //Condition for Coordonates(piece)
         if ( positionX == x && positionY == y) {
             var piece = cell.appendChild(document.createElement("b"));
@@ -47,5 +50,8 @@ for ( var y = 0; y < board.length; y++ ) {
 }
 
 piece.addEventListener("click", function(e) {
-    console.log("Try again");
+    e.stopPropagation();
+    // e.cancelBubble = true;
+    console.log("It's my piece");
+    // this.style.display = "none";
 })
