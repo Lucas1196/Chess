@@ -27,8 +27,8 @@ function determinateColor() {
 }
 
 //Coordonates for Piece(DYNAMIC)
-var positionX = 4;
-var positionY = 3;
+var positionX = 3;
+var positionY = 0;
 
 //Columns
 for ( var y = 0; y < board.length; y++ ) { 
@@ -39,9 +39,16 @@ for ( var y = 0; y < board.length; y++ ) {
         var cell = column.appendChild(document.createElement("span"));
             cell.addEventListener("click", function(e) {
                 if ( e.target == piece ) {
-                    piece.style.backgroundColor = "red";
+                    console.log("I am the piece");
                 }
-                else {
+                else if ( e.target !== piece && e.target.contains(piece) ) {
+                    console.log("I am the box of the piece");
+                }
+                else if ( !e.target.contains(piece) ) {
+                    console.log("I am ready for you");
+                    var newPiece = e.target.appendChild(document.createElement("b"));
+                        newPiece.classList.add("pawn");
+                    if ( )
                 }
             })
         determinateColor();
@@ -49,6 +56,7 @@ for ( var y = 0; y < board.length; y++ ) {
         if ( positionX == x && positionY == y ) {
             var piece = cell.appendChild(document.createElement("b"));
                 piece.classList.add("pawn");
+                column.classList.add("piece-inside");
         }
     }
 }
