@@ -46,9 +46,11 @@ for ( var y = 0; y < board.length; y++ ) {
                 }
                 else if ( !e.target.contains(piece) ) {
                     console.log("I am ready for you");
-                    var newPiece = e.target.appendChild(document.createElement("b"));
-                        newPiece.classList.add("pawn");
-                    if ( )
+                    // var newPiece = e.target.appendChild(document.createElement("b"));
+                    //     newPiece.classList.add("pawn");
+                    // if ( e.target.offsetParent.nextSibling.classList.contains("piece-inside") && !e.target.offsetParent.classList.contains("piece-inside") ) {
+                    //     console.log("ready");
+                    // }
                 }
             })
         determinateColor();
@@ -58,7 +60,7 @@ for ( var y = 0; y < board.length; y++ ) {
                 piece.classList.add("pawn");
                 column.classList.add("piece-inside");
         }
-    }
+     }
 }
 
 // piece.addEventListener("click", function(e) {
