@@ -67,3 +67,5 @@ for ( var y = 0; y < board.length; y++ ) {
     // e.stopPropagation();
     // e.cancelBubble = true;
 // })
+
+https://jsfiddle.net/3mnLcs9h/
