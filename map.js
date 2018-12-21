@@ -48,15 +48,15 @@ function legalMove(el) {
 	let y = parentEl.getAttribute("data-y");
 
 	if((parseInt(x) == parseInt(xPawn)-1 || parseInt(x) == parseInt(xPawn)+1) && (parseInt(y) == parseInt(yPawn)-1 || parseInt(y) == parseInt(yPawn)+1)) {
-        let Pawn = container.classList.remove("piece-inside");    
-        let newPawn = el.parentElement.classList.add("piece-inside");
-        var piece = el.appendChild(document.createElement("b"));
+        let newContainer = el.parentElement.classList.add("piece-inside");
+        let oldChild = document.getElementsByTagName("b");
+        let piece = el.appendChild(document.createElement("b"));
             piece.classList.add("pawn");
+        let Container = container.classList.remove("piece-inside");
     }
     else{
 		console.log("It is not a good move");
     }
-    
 }
 
 
