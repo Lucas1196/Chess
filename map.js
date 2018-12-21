@@ -49,10 +49,10 @@ function legalMove(el) {
 
 	if((parseInt(x) == parseInt(xPawn)-1 || parseInt(x) == parseInt(xPawn)+1) && (parseInt(y) == parseInt(yPawn)-1 || parseInt(y) == parseInt(yPawn)+1)) {
         let newContainer = el.parentElement.classList.add("piece-inside");
-        let oldChild = document.getElementsByTagName("b");
+        let oldPiece = document.getElementsByClassName("pawn");
         let piece = el.appendChild(document.createElement("b"));
             piece.classList.add("pawn");
-        let Container = container.classList.remove("piece-inside");
+        let oldContainer = container.classList.remove("piece-inside");
     }
     else{
 		console.log("It is not a good move");
