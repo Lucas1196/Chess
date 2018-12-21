@@ -12,24 +12,52 @@ var board = [
 var table = document.getElementById ("table");
 
 function determinateColor() {
-    if (y % 2 == 0 && x % 2 != 0) {
+    if ( y % 2 == 0 && x % 2 != 0 ) {
         cell.classList.add("black");
     }
-    else if (y % 2 != 0 && x % 2 == 0) {
+    else if ( y % 2 != 0 && x % 2 == 0 ) {
         cell.classList.add("black");
     }
-    // else if (y % 2 == 0 && x % 2 == 0) {
-    //     cell.classList.add("white");
-    // }
     else {
         cell.classList.add("white");
     }
 }
 
 
-    let positionX = 3;
-    let positionY = 2;   
+var positionX = 4;
+var positionY = 2;
 
+
+function legalMove(el) {
+
+    // debugger
+	let container = document.getElementsByClassName("piece-inside")[0];
+	let yPawn = container.getAttribute("data-y");
+	let pieceChildren = container.children;
+
+    for (val of pieceChildren) {
+        if (val.lastChild){
+            break;
+        }
+    }
+    
+    var xPawn = val.getAttribute("data-x");
+   
+    let x = el.getAttribute("data-x");
+	let parentEl = el.parentElement;
+	let y = parentEl.getAttribute("data-y");
+
+	if((parseInt(x) == parseInt(xPawn)-1 || parseInt(x) == parseInt(xPawn)+1) && (parseInt(y) == parseInt(yPawn)-1 || parseInt(y) == parseInt(yPawn)+1)) {
+        let Pawn = container.classList.remove("piece-inside");    
+        let newPawn = el.parentElement.classList.add("piece-inside");
+        var piece = el.appendChild(document.createElement("b"));
+            piece.classList.add("pawn");
+    }
+    else{
+		console.log("It is not a good move");
+    }
+    
+}
 
 
 //Columns
@@ -42,38 +70,26 @@ for ( var y = 0; y < board.length; y++ ) {
         var cell = column.appendChild(document.createElement("span"));
             cell.dataset.x = x;
             cell.addEventListener("click", function(e) {
+
                 if ( e.target == piece ) {
+                    e.target.style.border = "8px solid green";
                     console.log("I am the piece");
                     return;
                 }
-                else if ( !e.target.contains(piece) ) {
-                    console.log("I am the cell without piece");
-                    move();
+                else if ( e.target !== piece && e.target.contains(piece) ) {
+                    console.log("I am the cell with piece");
                     return;
                 }
+                else if ( !e.target.contains(piece) ) {
+                    legalMove(this);
+                }
+                
             })
-            if ( positionX == x && positionY == y ) {
-                var piece = cell.appendChild(document.createElement("b"));
-                    piece.classList.add("pawn");
-                    column.classList.add("piece-inside");
-                    // console.log(document.getElementsByClassName("piece-inside"));
-            }
-            determinateColor();
-            position();
+        determinateColor();
+        if ( positionX == x && positionY == y ) {
+            var piece = cell.appendChild(document.createElement("b"));
+                piece.classList.add("pawn");
+                column.classList.add("piece-inside");
+        }
     }
 }
-
-
-// else if ( e.target !== piece && e.target.contains(piece) ) {
-//     console.log("I am the cell with piece");
-//     // console.log(e.target);
-//     return;
-// }
-
-// else if ( e.target.offsetParent.previousSibling.classList.contains("piece-inside") || e.target.offsetParent.nextSibling.classList.contains("piece-inside") && !e.target.contains(piece) ) {
-//     this.offsetParent.previousSibling.classList.remove("piece-inside");
-//     this.offsetParent.classList.add("piece-inside");
-//     var piece = e.target.appendChild(document.createElement("b"));
-//         piece.classList.add("pawn");
-//         console.log("I am the cell without piece");
-// }
