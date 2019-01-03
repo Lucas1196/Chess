@@ -16,47 +16,46 @@ function determinateColor() {
         cell.classList.add("black");
     }
     else if ( y % 2 != 0 && x % 2 == 0 ) {
-        cell.classList.add("black");
+        cell.classList.add("black");    
     }
     else {
         cell.classList.add("white");
     }
 }
 
-
 var positionX = 4;
 var positionY = 2;
 
-
 function legalMove(el) {
 
-    // debugger
-	let container = document.getElementsByClassName("piece-inside")[0];
-	let yPawn = container.getAttribute("data-y");
-	let pieceChildren = container.children;
+	var container = document.getElementsByClassName("piece-inside")[0];
+	var yPawn = container.getAttribute("data-y");
+	var pieceChildren = container.children;
 
     for (val of pieceChildren) {
-        if (val.lastChild){
+        if (val.firstChild) {
             break;
         }
     }
-    
+
     var xPawn = val.getAttribute("data-x");
    
-    let x = el.getAttribute("data-x");
-	let parentEl = el.parentElement;
-	let y = parentEl.getAttribute("data-y");
+    var x = el.getAttribute("data-x");
+	var parentEl = el.parentElement;
+	var y = parentEl.getAttribute("data-y");
 
 	if((parseInt(x) == parseInt(xPawn)-1 || parseInt(x) == parseInt(xPawn)+1) && (parseInt(y) == parseInt(yPawn)-1 || parseInt(y) == parseInt(yPawn)+1)) {
         let newContainer = el.parentElement.classList.add("piece-inside");
-        let oldPiece = document.getElementsByClassName("pawn");
+        let oldContainer = container.classList.remove("piece-inside");   
         let piece = el.appendChild(document.createElement("b"));
             piece.classList.add("pawn");
-        let oldContainer = container.classList.remove("piece-inside");
+        // let removePiece = xPawn;
+        //     removePiece.removeChild("b");
     }
-    else{
-		console.log("It is not a good move");
+    else {
+		console.log("Nu e o mutare buna!");
     }
+
 }
 
 
