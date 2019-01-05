@@ -28,6 +28,7 @@ var positionY = 2;
 
 function legalMove(el) {
 
+    // debugger
 	var container = document.getElementsByClassName("piece-inside")[0];
 	var yPawn = container.getAttribute("data-y");
 	var pieceChildren = container.children;
@@ -39,18 +40,18 @@ function legalMove(el) {
     }
 
     var xPawn = val.getAttribute("data-x");
-   
+
     var x = el.getAttribute("data-x");
 	var parentEl = el.parentElement;
-	var y = parentEl.getAttribute("data-y");
+    var y = parentEl.getAttribute("data-y");
 
 	if((parseInt(x) == parseInt(xPawn)-1 || parseInt(x) == parseInt(xPawn)+1) && (parseInt(y) == parseInt(yPawn)-1 || parseInt(y) == parseInt(yPawn)+1)) {
         let newContainer = el.parentElement.classList.add("piece-inside");
-        let oldContainer = container.classList.remove("piece-inside");   
-        let piece = el.appendChild(document.createElement("b"));
-            piece.classList.add("pawn");
-        // let removePiece = xPawn;
-        //     removePiece.removeChild("b");
+        let oldContainer = container.classList.remove("piece-inside");
+        let newpiece = el.appendChild(document.createElement("b"));
+            newpiece.classList.add("pawn");
+            piece.remove();
+            piece = newpiece;
     }
     else {
 		console.log("Nu e o mutare buna!");
@@ -71,7 +72,6 @@ for ( var y = 0; y < board.length; y++ ) {
             cell.addEventListener("click", function(e) {
 
                 if ( e.target == piece ) {
-                    e.target.style.border = "8px solid green";
                     console.log("I am the piece");
                     return;
                 }
