@@ -1,94 +1,50 @@
-var board = [ 
-    [0, 1, 0, 1, 0, 1, 0, 1],
-    [0, 1, 0, 1, 0, 1, 0, 1],
-    [0, 1, 0, 1, 0, 1, 0, 1],
-    [0, 1, 0, 1, 0, 1, 0, 1],
-    [0, 1, 0, 1, 0, 1, 0, 1],
-    [0, 1, 0, 1, 0, 1, 0, 1],
-    [0, 1, 0, 1, 0, 1, 0, 1],
-    [0, 1, 0, 1, 0, 1, 0, 1]
-];
+// const column = React.createElement('div', { className: 'column' }, cell);
+// const cell   = React.createElement('span', { className: '' }, '');
 
-var table = document.getElementById ("table");
+// const column = React.createElement('div', { className: 'column' },
+//                React.createElement('span', { className: ' ' }, ''),
+// );
+let positionX = 4;
+let positionY = 2;
 
-function determinateColor() {
-    if ( y % 2 == 0 && x % 2 != 0 ) {
-        cell.classList.add("black");
-    }
-    else if ( y % 2 != 0 && x % 2 == 0 ) {
-        cell.classList.add("black");    
-    }
-    else {
-        cell.classList.add("white");
-    }
-}
+class Table extends React.Component {
 
-var positionX = 4;
-var positionY = 2;
+    createTable = () => {
 
-function legalMove(el) {
-
-    // debugger
-	var container = document.getElementsByClassName("piece-inside")[0];
-	var yPawn = container.getAttribute("data-y");
-	var pieceChildren = container.children;
-
-    for (val of pieceChildren) {
-        if (val.firstChild) {
-            break;
+    let columns = [];
+    // Outer loop to create parent
+    for (let y = 0; y < 8; y++) {
+        let cells = [];
+            //Inner loop to create children
+            for (let x = 0; x < 8; x++) {
+                if ( y % 2 == 0 && x % 2 != 0 ) {
+                    cells.push(<span className = "white" key = {x}></span>)
+                }
+                else if ( y % 2 != 0 && x % 2 == 0 ) {
+                    cells.push(<span className = "white" key = {x}></span>)
+                }
+                else {
+                    cells.push(<span className = "black" key = {x}></span>)
+                }
+                if ( positionX == x && positionY == y ) {
+                    let piece = document.createElement("b");
+                        piece.className = 'pawn';
+                    let column = this.className = 'piece-inside';
+                }
+            }
+            //Create the parent and add the children
+            columns.push(<div className = "column" key = {y}>{cells}</div>)
         }
+        return columns
     }
-
-    var xPawn = val.getAttribute("data-x");
-
-    var x = el.getAttribute("data-x");
-	var parentEl = el.parentElement;
-    var y = parentEl.getAttribute("data-y");
-
-	if((parseInt(x) == parseInt(xPawn)-1 || parseInt(x) == parseInt(xPawn)+1) && (parseInt(y) == parseInt(yPawn)-1 || parseInt(y) == parseInt(yPawn)+1)) {
-        let newContainer = el.parentElement.classList.add("piece-inside");
-        let oldContainer = container.classList.remove("piece-inside");
-        let newpiece = el.appendChild(document.createElement("b"));
-            newpiece.classList.add("pawn");
-            piece.remove();
-            piece = newpiece;
-    }
-    else {
-		console.log("Nu e o mutare buna!");
-    }
-
-}
-
-
-//Columns
-for ( var y = 0; y < board.length; y++ ) { 
-    var column = table.appendChild(document.createElement("div"));
-        column.classList.add("column");
-        column.dataset.y = y;
-    //Cell
-    for ( var x = 0; x < board.length; x++ ) {
-        var cell = column.appendChild(document.createElement("span"));
-            cell.dataset.x = x;
-            cell.addEventListener("click", function(e) {
-
-                if ( e.target == piece ) {
-                    console.log("I am the piece");
-                    return;
-                }
-                else if ( e.target !== piece && e.target.contains(piece) ) {
-                    console.log("I am the cell with piece");
-                    return;
-                }
-                else if ( !e.target.contains(piece) ) {
-                    legalMove(this);
-                }
-                
-            })
-        determinateColor();
-        if ( positionX == x && positionY == y ) {
-            var piece = cell.appendChild(document.createElement("b"));
-                piece.classList.add("pawn");
-                column.classList.add("piece-inside");
-        }
+    
+    render() {
+        return(
+            <div className = "inner-table">
+                {this.createTable()}
+            </div>
+        )
     }
 }
+
+ReactDOM.render(<Table />, document.getElementById('table'));
